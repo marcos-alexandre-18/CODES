@@ -1,0 +1,55 @@
+algoritmo "jogo da velha"
+
+  var
+  v: vetor[1..9] de caractere
+  i, p, j, f: inteiro
+  c: caractere
+
+  inicio
+  para i de 1 ate 9 faca
+   v[i] <- " "
+  fimpara
+  enquanto (j < 9) e (f = 0) faca
+  se j mod 2 = 0 entao
+  c <- "X"
+  senao
+  c <- "O"
+  fimse
+  escreval("Jogador ", c, " (1-9): ")
+  leia(p)
+  se (p < 1) ou (p > 9) entao
+  escreval("Posicao invalida, jogue de novo!")
+  senao
+  se v[p] <> " " entao
+  escreval("Posicao ocupada, escolha outra!")
+  senao
+  v[p] <- c
+  j <- j + 1
+  para i de 0 ate 2 faca
+  se ((v[3*i+1]=c) e (v[3*i+2]=c) e (v[3*i+3]=c)) ou ((v[i+1]=c) e (v[i+4]=c) e (v[i+7]=c)) entao
+  f <- 1
+  fimse
+  fimpara
+  se ((v[1]=c) e (v[5]=c) e (v[9]=c)) ou ((v[3]=c) e (v[5]=c) e (v[7]=c)) entao
+  f <- 1
+  fimse
+  fimse
+  fimse
+  para i de 1 ate 9 faca
+  escreva(" ", v[i])
+  se i mod 3 = 0 entao
+  escreval("")
+  se i < 9 entao
+  escreval("---+---+---")
+  fimse
+  senao
+  escreva(" |")
+  fimse
+  fimpara
+  fimenquanto
+  se f = 1 entao
+  escreval("Vencedor: ", c)
+  senao
+  escreval("Deu velha!")
+  fimse
+  fimalgoritmo
